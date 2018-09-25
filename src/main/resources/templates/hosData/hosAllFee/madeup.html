@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/hosData/base"><!-- layout文件路径-->
+<head>
+    <title>页面1</title>
+</head>
+<body>
+<div layout:fragment="table-select" th:remove="tag">
+    <div th:replace="common/hosData/tableSelect::hosAllFee"></div>
+</div>
+<div layout:fragment="subNav" th:remove="tag">
+    <div th:replace="common/hosData/subNav::hosAllFee"></div>
+</div>
+<div layout:fragment="echart-content">
+    <div class="echart-box" id="echart1"></div>
+</div>
+<div layout:fragment="table-content">
+    aaaaaa
+</div>
+
+
+<div layout:fragment="script-content" th:remove="tag">
+    <script th:src="${urls.getForLookupPath('/js/hosData/hosAllFee/madeup.js')}"></script>
+</div>
+</body>
+</html>

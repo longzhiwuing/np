@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link th:href="${urls.getForLookupPath('/css/index.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="col-xs-6">
+    <div id="main1" style="width: 600px;height:450px;"></div>
+</div>
+<div class="col-xs-6">
+    <div id="main2" style="width: 600px;height:450px;"></div>
+</div>
+<div id="table">
+    <table id="test-table" class="col-xs-12" data-toolbar="#test-table-toolbar"></table>
+</div>
+<script th:replace="common/js::script"></script>
+    <script th:src="${urls.getForLookupPath('/js/show.js')}"></script>
+<script th:inline="javascript">
+    showEChart('main1',getOption(),'/api/signBill/echart.json',callback);
+    showEChart('main2',getOptionPie(),'/api/signBill/echartPie.json',callbackPie);
+    showTable('test-table','/api/totalCost/table.json?startDate=2016-01-01&endDate=2018-07-07',getTableColumnsHospital());
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.StHospitalStandDatasetMapper">
+   <resultMap id="BaseResultMap" type="com.cecdat.np.entity.StHospitalStandardDataset">
+        <id column="sequence_no" property="sequenceNo"></id>
+        <result column="dataset_struc_id" property="datasetStrucId"></result>
+        <result column="dataset_name" property="datasetName"></result>
+        <result column="business_system" property="businessSystem"></result>
+        <result column="application_theme" property="applicationTheme"></result>
+        <result column="drs_rows" property="drsRows"></result>
+        <result column="data_total" property="dataTotal"></result>
+        <result column="medical_org_name" property="medicalOrgName"></result>
+    </resultMap>
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="selectStandDataSet"  resultMap="BaseResultMap" resultType="java.util.Map">
+        select * from
+          st_hospital_standard_dataset_copy
+
+        <trim prefix="where" prefixOverrides="or">
+            <if test="searchText != null and searchText !=''">
+                or dataset_name like concat('%',#{searchText},'%')
+                or business_system like concat('%',#{searchText},'%')
+                or application_theme like concat('%',#{searchText},'%')
+                or medical_org_name like concat('%',#{searchText},'%')
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectCountStandDataSet"  resultType="int">
+        select count(*) from
+        st_hospital_standard_dataset_copy
+
+        <trim prefix="where" prefixOverrides="or">
+            <if test="searchText != null and searchText !=''">
+                or dataset_name like concat('%',#{searchText},'%')
+                or business_system like concat('%',#{searchText},'%')
+                or application_theme like concat('%',#{searchText},'%')
+                or medical_org_name like concat('%',#{searchText},'%')
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectStandDataSetById"  resultType="com.cecdat.np.entity.StStandDrs">
+        select * from
+        st_stand_drs
+        where fk_dataset_struc_id = #{fkDatasetStrucId}
+    </select>
+
+
+
+    <select id="selectStandDataSetInfoById"  resultMap="BaseResultMap" resultType="java.util.Map">
+        SELECT * from st_hospital_standard_dataset_copy b WHERE b.dataset_struc_id= #{dataset_struc_id}
+    </select>
+
+    <select id="selectCountStandDataSetById"  resultType="int">
+
+        select count(*) from
+        st_stand_drs a
+        where a.fk_dataset_struc_id = #{fkDatasetStrucId}
+    </select>
+
+
+</mapper>

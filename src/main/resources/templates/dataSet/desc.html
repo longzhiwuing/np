@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/dataSet/base"><!-- layout文件路径-->
+<head>
+    <title>数据标准</title>
+</head>
+<body>
+
+<div layout:fragment="data-content">
+    <!--描述 start-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">名称</h3>
+        </div>
+        <div class="panel-body" th:text="${datasetName}">患者基本信息数据集</div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">简介</h3>
+        </div>
+        <div class="panel-body">
+            <p>该数据集暂无描述</p>
+        </div>
+        <ul class="text-ul">
+            <li>数据来源: <span th:text="${orgName}">中电数据服务有限公司</span></li>
+            <li>数据元个数: <span th:text="${drsRows}">200个</span></li>
+            <li>关联数据总记录数: <span th:text="${dataTotal}">234,456,123条</span></li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">分类</h3>
+        </div>
+        <ul class="text-ul">
+            <li>所属医院系统: <span th:text="${businessSystem}">HIS系统、LIS系统</span></li>
+            <li>所属业务分类: <span th:text="${datasetName}">公共业务、门诊数据、住院数据</span></li>
+            <li>所属主题应用: <span th:text="${applicationTheme}">保险、药物研发、科研</span></li>
+        </ul>
+    </div>
+    <!--描述 end-->
+</div>
+
+<div layout:fragment="script-content" th:remove="tag">
+
+</div>
+</body>
+</html>

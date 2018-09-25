@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="leftNav" th:remove="tag">
+    <ul class="nav-sidebar">
+        <li th:class="${page=='hosRes'}?'nav-item active':'nav-item'"><a th:href="@{/hosRes/hosHR}">医院资源分析</a></li>
+        <li th:class="${page=='hosMZ'}?'nav-item active':'nav-item'"><a th:href="@{/hosMZ/workload}">门诊情况汇总分析</a></li>
+        <li th:class="${page=='hosZY'}?'nav-item active':'nav-item'"><a th:href="@{/hosZY/feectrl}">住院情况汇总分析</a></li>
+        <li th:class="${page=='hosAllFee'}?'nav-item active':'nav-item'"><a th:href="@{/hosAllFee/feectrl}">全院费用分析</a></li>
+    </ul>
+</div>
+</body>
+</html>

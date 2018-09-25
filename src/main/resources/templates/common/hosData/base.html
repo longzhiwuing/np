@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link href="/js/lib/layui/css/layui.css" rel="stylesheet" media="screen"> </link>
+    <link href="/css/lib/bootstrap-table.min.css" rel="stylesheet" media="screen" />
+    <link th:href="${urls.getForLookupPath('/css/hospital-run.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid cecd-hospital-run">
+    <div th:replace="common/header::header"></div>
+
+    <div class="row route-nav">
+        <div class="inner">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/index}"><i class="fa fa-home" aria-hidden="true"></i> 首页</a></li>
+                <li><a th:href="@{/hosData}">政府主题</a></li>
+                <li class="active">医院运行</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row main-content">
+        <div class="inner">
+            <div th:replace="common/hosData/leftNav::leftNav"></div>
+            <div class="data-show">
+                <div class="container" layout:fragment="subNav" th:remove="tag"></div>
+                <div class="data-show-content">
+                    <div class="form-box">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label>开始时间</label>
+                                <input type="text" class="form-control time-select" id="startDate" placeholder="开始时间">
+                            </div>
+                            <div class="form-group">
+                                <label>结束时间</label>
+                                <input type="text" class="form-control time-select" id="endDate" placeholder="结束时间">
+                            </div>
+                            <button type="button" class="btn btn-default submit-btn" onclick="search()">确认</button>
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <div class="data-show-top">
+                            <ul class="table-echart btn-group navbar-right">
+                                <li class="echart-chosen active" name="data-echarts" title="图表显示"><i class="fa fa-pie-chart" aria-hidden="true"></i></li>
+                                <li class="dropdown-toggle" title="表格显示" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-table" aria-hidden="true"></i><span class="caret"></span></li>
+                                <ul class="dropdown-menu dropleft">
+                                    <div class="container" layout:fragment="table-select" th:remove="tag"></div>
+                                </ul>
+                            </ul>
+                        </div>
+                        <div class="data-show-module echart-content">
+                            <div class="container" layout:fragment="echart-content" th:remove="tag"></div>
+                        </div>
+                        <div class="data-show-module table-content hide">
+                            <div class="container" layout:fragment="table-content" th:remove="tag"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="common/footer::footer"></div>
+</div>
+<script th:replace="common/js::script"></script>
+<script src="/js/lib/layui/layui.js"></script>
+<script th:src="${urls.getForLookupPath('/js/hosData/hospital-run.js')}"></script>
+<script layout:fragment="script-content" th:remove="tag"></script>
+</body>
+</html>

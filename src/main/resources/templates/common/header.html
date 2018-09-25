@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="header" th:remove="tag">
+    <div class="row login-bar">
+        <div class="inner">
+            <p class="welcome"><i class="fa fa-paper-plane" aria-hidden="true"></i> 欢迎来到国家健康医疗大数据平台</p>
+            <a th:href="@{/logout}" class="login"><i class="fa fa-user" aria-hidden="true"></i> 退出</a>
+        </div>
+    </div>
+    <div class="row header-bar">
+        <div class="inner">
+            <a th:href="@{/index}"><h2 class="title">国家健康医疗大数据平台</h2></a>
+            <div class="search">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="" placeholder="输入您想查找的内容...">
+                        <button class="btn btn-default search-btn">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row navbar-box">
+        <div class="inner">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li th:class="${mainPage=='index'}?'active':''"><a th:href="@{/index}">首页<span class="sr-only">(current)</span></a></li>
+                        <li th:class="${mainPage=='dataServ'}?'dropdown active':'dropdown'">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">数据资源</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/dataServ}">医疗大数据</a></li>
+                                <li><a href="#">健康大数据</a></li>
+                                <li><a href="#">生物大数据</a></li>
+                                <li><a href="#">运营大数据</a></li>
+                            </ul>
+                        </li>
+                        <li th:class="${mainPage=='dataStand'}?'dropdown active':'dropdown'">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">数据标准</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/dataStand}">数据分类</a></li>
+                                <li><a th:href="@{/dataStand/drsMetadata}">元数据</a></li>
+                                <li><a href="#">数据字典</a></li>
+                                <li><a href="#">自定义数据集</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">生态应用</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">政声传递</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">国家政策导引</a></li>
+                                <li><a href="#">行业标准查询</a></li>
+                                <li><a href="#">行业新闻动态</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/bi}" target="_blank">BI展示</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: "微软雅黑","黑体";
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cecd-bi {
+  width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+}
+.cecd-bi .header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  top: 16px;
+  color: #fff;
+  font-size: 26px;
+}
+.cecd-bi .content {
+  padding: 0 15px;
+  padding-top: 90px;
+}
+.cecd-bi .content .echart-box {
+  width: 100%;
+  height: 100%;
+}
+.cecd-bi .content .tab1 {
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: -1px;
+  bottom: auto;
+  height: 1px;
+  width: 10px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab2 {
+  position: absolute;
+  left: -1px;
+  right: auto;
+  top: -1px;
+  bottom: auto;
+  height: 11px;
+  width: 1px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab3 {
+  position: absolute;
+  left: auto;
+  right: 0;
+  top: -1px;
+  bottom: auto;
+  height: 1px;
+  width: 10px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab4 {
+  position: absolute;
+  left: auto;
+  right: -1px;
+  top: -1px;
+  bottom: auto;
+  height: 11px;
+  width: 1px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab5 {
+  position: absolute;
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: -1px;
+  height: 1px;
+  width: 10px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab6 {
+  position: absolute;
+  left: auto;
+  right: -1px;
+  top: auto;
+  bottom: -1px;
+  height: 11px;
+  width: 1px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab7 {
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: auto;
+  bottom: -1px;
+  height: 1px;
+  width: 10px;
+  background: #2088ca;
+}
+.cecd-bi .content .tab8 {
+  position: absolute;
+  left: -1px;
+  right: auto;
+  top: auto;
+  bottom: -1px;
+  height: 11px;
+  width: 1px;
+  background: #2088ca;
+}
+.cecd-bi .content .top {
+  overflow: auto;
+  margin-bottom: 15px;
+}
+.cecd-bi .content .top .top-left {
+  margin-right: 15px;
+  float: left;
+}
+.cecd-bi .content .top .top-left .top-left-top {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  width: 530px;
+  height: 200px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+}
+.cecd-bi .content .top .top-left .top-left-bottom {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  width: 530px;
+  height: 200px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+}
+.cecd-bi .content .top .top-center {
+  float: left;
+  box-sizing: border-box;
+  margin-right: 15px;
+  width: 800px;
+  height: 415px;
+}
+.cecd-bi .content .top .top-right {
+  float: left;
+}
+.cecd-bi .content .top .top-right .top-right-top {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  width: 530px;
+  height: 200px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+}
+.cecd-bi .content .top .top-right .top-right-bottom {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  width: 530px;
+  height: 200px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+}
+.cecd-bi .content .middle {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+}
+.cecd-bi .content .bottom .bottom-left {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  width: 937.5px;
+  height: 250px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+  margin-right: 15px;
+  float: left;
+}
+.cecd-bi .content .bottom .bottom-right {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  width: 937.5px;
+  height: 250px;
+  border: 1px solid rgba(32, 136, 202, 0.4);
+  background-color: rgba(8, 25, 66, 0.2);
+  float: left;
+}
+
+/*# sourceMappingURL=BI.css.map */

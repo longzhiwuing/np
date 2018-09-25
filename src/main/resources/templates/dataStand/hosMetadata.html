@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/dataStand/base"><!-- layout文件路径-->
+<head>
+    <title>数据服务</title>
+</head>
+<body>
+
+<div layout:fragment="data-content">
+    <div class="data-show-top">
+        <p class="top-title">医院数据集</p>
+    </div>
+    <div class="data-show-module" id="data-table">
+        <table id="datastand-hospital-dataset-table" data-toggle="table" data-pagination="true"></table>
+    </div>
+</div>
+
+
+<div layout:fragment="script-content" th:remove="tag">
+    <script th:src="${urls.getForLookupPath('/js/dataServ/hos-table.js')}"></script>
+    <script th:inline="javascript">
+        showTable('datastand-hospital-dataset-table','/api/selectStandDataSet.json',getHospitalTableColumns());
+    </script>
+</div>
+</body>
+</html>

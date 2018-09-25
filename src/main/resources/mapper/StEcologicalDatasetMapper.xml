@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.StEcologicalDatasetMapper">
+    <resultMap id="BaseResultMap" type="com.cecdat.np.entity.StEcologicalDataset">
+        <id column="sequence_no" property="sequenceNo"></id>
+        <result column="medical_org_name" property="medicalOrgName"></result>
+        <result column="database_name" property="databaseName"></result>
+        <result column="table_name" property="tableName"></result>
+        <result column="table_chinese_name" property="tableChineseName"></result>
+        <result column="field_name" property="fieldName"></result>
+        <result column="field_chinese_name" property="fieldChineseName"></result>
+        <result column="table_rows" property="tableRows"></result>
+        <result column="de_id" property="deId"></result>
+        <result column="de_code" property="deCode"></result>
+        <result column="de_innercode" property="deInnercode"></result>
+        <result column="de_define" property="deDefine"></result>
+        <result column="de_type" property="deType"></result>
+        <result column="de_format" property="deFormat"></result>
+        <result column="allow_value" property="allowValue"></result>
+        <result column="de_desc" property="deDesc"></result>
+        <result column="de_en_name" property="deEnName"></result>
+        <result column="dataset_struc_desc" property="datasetStrucDesc"></result>
+        <result column="dataset_struc_enname" property="datasetStrucEnname"></result>
+
+    </resultMap>
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="selectDataSet"  resultMap="BaseResultMap" parameterType="java.lang.String" resultType="com.cecdat.np.entity.StEcologicalDataset">
+        select * from st_ecological_dataset where medical_org_name = #{medicalOrgName}
+    </select>
+
+
+</mapper>

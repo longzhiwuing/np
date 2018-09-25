@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/dataServ/base"><!-- layout文件路径-->
+<head>
+    <title>数据服务</title>
+</head>
+<body>
+
+<div layout:fragment="data-content">
+    <div class="data-show-top">
+        <p class="top-title">数据资源总览</p>
+    </div>
+    <div class="data-show-module" id="data-echarts">
+        <div class="form-box">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>省市选择</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>福州市</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>区县选择</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>闽清县</option>
+                        <option>闽侯县</option>
+                        <option>永泰县</option>
+                        <option>连江县</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>医院等级</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>三甲</option>
+                        <option>三乙</option>
+                        <option>三丙</option>
+                        <option>二甲</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>医院名称</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>福州一院</option>
+                        <option>福州二院</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default submit-btn">确认</button>
+            </form>
+        </div>
+        <div class="introduction">
+            <div class="icon"><i class="fa fa-database" aria-hidden="true"></i></div>
+            <div class="text">
+                <p class="text-title" th:text="${resource.dName}">医疗大数据</p>
+                <ul class="text-ul">
+                    <li>医疗机构数: <span th:text="${resource.mdNum}"></span></li>
+                    <li>包含医院系统: <span th:text="${resource.sysName}"></span></li>
+                    <li>数据总量: <span th:text="${resource.dCount}"></span></li>
+                    <!--<li>关联主题应用: <span>保险、药物研发、科研......</span></li>-->
+                    <!--<li>包含元数据数: <span>3654个</span></li>-->
+                    <!--<li>关联业务种类: <span>公共卫生、儿童保健、妇女保健......</span></li>-->
+                    <!--<li>创建时间: <span>2017年12月6日  10:20:36</span></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="echart-box" id="main"></div>
+        <div class="echart-box" id="sysDataId"></div>
+    </div>
+    <div class="data-show-module hide" id="data-table">
+        <table data-toggle="table" data-pagination="true">
+            <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Item Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>kily</td>
+                <td>$1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>tom</td>
+                <td>$2</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div layout:fragment="script-content" th:remove="tag">
+    <script th:src="${urls.getForLookupPath('/js/dataServ/dataRes.js')}"></script>
+    <script th:src="${urls.getForLookupPath('/js/dataServ/dataResourceShow.js')}"></script>
+    <script th:inline="javascript">
+        showHosCountDataEChart('main','/api/hospital/data/showChart.json');
+        showHosSysCountDataEChart('sysDataId','/api/hospital/sys/data/showChart.json');
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link href="/js/lib/layui/css/layui.css" rel="stylesheet" media="screen"> </link>
+    <link th:href="${urls.getForLookupPath('/css/index.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid cecd-index">
+    <div th:replace="common/header::header"></div>
+    <div class="row banner">
+        <div class="inner">
+            <div class="banner-img">
+                <div class="layui-carousel" id="banner-box">
+                    <div carousel-item>
+                        <div><img th:src="@{/images/banner.webp}" alt=""></div>
+                        <div><img th:src="@{/images/banner2.webp}" alt=""></div>
+                        <div><img th:src="@{/images/banner3.webp}" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-explain">
+                <p class="data-title">数据总览</p>
+                <div class="data-content">
+                    <div class="data-item">
+                        <div class="item-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></div>
+                        <p class="item-title">医院总数</p>
+                        <p class="item-num hos-num">23,589</p>
+                    </div>
+                    <div class="data-item">
+                        <div class="item-icon"><i class="fa fa-cube" aria-hidden="true"></i></div>
+                        <p class="item-title">总数据量</p>
+                        <p class="item-num total-num">897,123,589</p>
+                    </div>
+                    <div class="data-item">
+                        <div class="item-icon"><i class="fa fa-sitemap" aria-hidden="true"></i></div>
+                        <p class="item-title">元数据量</p>
+                        <p class="item-num metadata-num">7,123,589</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row category">
+        <div class="inner">
+            <ul class="category-title">
+                <li class="active category-li" name="company">企业类主题</li>
+                <li class="category-li" name="government">政府类主题</li>
+            </ul>
+            <ul class="category-module category-module-company" id="company">
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/disease.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-heart-o" aria-hidden="true"></i></i></span><p>疾病信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/shoushu.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-stethoscope" aria-hidden="true"></i></span><p>手术信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/pacs.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-film" aria-hidden="true"></i></span><p>影像信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/zhuyuan.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-bed" aria-hidden="true"></i></span><p>住院信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/tongji.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-bar-chart" aria-hidden="true"></i></span><p>统计信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/menzhen.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-h-square" aria-hidden="true"></i></span><p>门诊信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/drug.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-medkit" aria-hidden="true"></i></span><p>药品信息</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/check.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-search-plus" aria-hidden="true"></i></span><p>检验信息</p></div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="category-module category-module-government hide" id="government">
+                <li class="category-item hospital">
+                    <a th:href="@{/hosData}">
+                        <img th:src="@{/images/hospital.webp}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-hospital-o" aria-hidden="true"></i></span><p>医院运行</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/yiliao.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-plus-square" aria-hidden="true"></i></span><p>医疗质量</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/bingzhong.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-flask" aria-hidden="true"></i></span><p>单病种</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/zhongzheng.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-heartbeat" aria-hidden="true"></i></span><p>重症质量</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/shoushu1.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-deaf" aria-hidden="true"></i></span><p>手术麻醉</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{/images/huli.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-user-md" aria-hidden="true"></i></span><p>护理质量</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{images/usedrug.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-hourglass-end" aria-hidden="true"></i></span><p>合理用药</p></div>
+                    </a>
+                </li>
+                <li class="category-item">
+                    <a href="###">
+                        <img th:src="@{images/ganran.jpg}" alt="">
+                        <div class="waiting-text"><span><i class="fa fa-code-fork" aria-hidden="true"></i></span><p>感染控制</p></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row news">
+        <div class="inner">
+            <p class="news-title">新闻资讯</p>
+            <ul class="news-module">
+                <li class="news-item">
+                    <p class="item-head">新闻动态</p>
+                    <ul class="item-list">
+                        <li><a href=""><span class="circle"></span> 充满力量 再度出发 中青班毕班</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 124</span></li>
+                        <li><a href=""><span class="circle"></span> 中国电子举办党建与企业文化工作培训班</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 263</span></li>
+                        <li><a href=""><span class="circle"></span> 中电工业环境科技园环保生产基地举行奠基仪式</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 195</span></li>
+                        <li><a href=""><span class="circle"></span> 成都移动实现4G网络乡乡通</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 972</span></li>
+                        <li><a href=""><span class="circle"></span> 鸿海旗下国碁4G服务可望6/3前开台，与亚太电合并案将延至年底前</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 348</span></li>
+                        <li><a href=""><span class="circle"></span> 电信3雄及亚太电等4G业者抢进三创园区设门市，5/15开幕，独缺台湾之星</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 284</span></li>
+                        <li><a href=""><span class="circle"></span> 陆智慧机销量6年来首见下滑,电信商降价拼4G商机</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 243</span></li>
+                        <li><a href=""><span class="circle"></span> 中华电信今年底前将新增4500座4G基地台，积极参与2600MHz竞标</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 947</span></li>
+                    </ul>
+                </li>
+                <li class="news-item">
+                    <p class="item-head">业界新闻</p>
+                    <ul class="item-list">
+                        <li><a href=""><span class="circle"></span> 数码通涉误导判罚15万</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 946</span></li>
+                        <li><a href=""><span class="circle"></span> 基隆市立医院 未来拟盖4G基地台</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 863</span></li>
+                        <li><a href=""><span class="circle"></span> Microchip推出具有智能模拟功能与核心独立外设的高性价比8位PIC</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 598</span></li>
+                        <li><a href=""><span class="circle"></span> 从嵌入式技术到智慧系统 十大行业掀起技术革命</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 234</span></li>
+                        <li><a href=""><span class="circle"></span> 中国电子信息博览会下周展示全球一流跨国公司新技术产品</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 532</span></li>
+                        <li><a href=""><span class="circle"></span> 亚洲最大综合性电子信息博览会将开幕</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 146</span></li>
+                        <li><a href=""><span class="circle"></span> 从嵌入式技术到智慧系统 十大行业掀起技术革命</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 642</span></li>
+                        <li><a href=""><span class="circle"></span> 亚洲最大的综合性电子信息博览会将在深圳开幕</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 432</span></li>
+                    </ul>
+                </li>
+                <li class="news-item">
+                    <p class="item-head">国际消息</p>
+                    <ul class="item-list">
+                        <li><a href=""><span class="circle"></span> 巴西将向外国公司开放4G宽带招标</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 456</span></li>
+                        <li><a href=""><span class="circle"></span> CITE2014智能终端 更智能更便携更安全</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 235</span></li>
+                        <li><a href=""><span class="circle"></span> 第二届中国电子信息博览会展示全球最新信息技术成果</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 246</span></li>
+                        <li><a href=""><span class="circle"></span> [原创]预防机尾撞击 Avoiding Tail strikes</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 532</span></li>
+                        <li><a href=""><span class="circle"></span> 国产商失意4G手机芯片 攻克核心技术显迫切</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 467</span></li>
+                        <li><a href=""><span class="circle"></span> PMC：从小芯片看大世界 芯片起家</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 642</span></li>
+                        <li><a href=""><span class="circle"></span> MegaChips总裁兼执行长高田明加入GSA董事会</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 752</span></li>
+                        <li><a href=""><span class="circle"></span> CTM：年內推4G 覆蓋率近100%</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 332</span></li>
+                    </ul>
+                </li>
+                <li class="news-item">
+                    <p class="item-head">政策解读</p>
+                    <ul class="item-list">
+                        <li><a href=""><span class="circle"></span> 《食品安全国家标准 食品中百草枯等43种农药最大残留限量》</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 356</span></li>
+                        <li><a href=""><span class="circle"></span> 《婴幼儿谷类辅助食品中镉的临时限量值的公告》</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 462</span></li>
+                        <li><a href=""><span class="circle"></span> 《食品安全国家标准 食品添加剂 聚氧丙烯甘油醚》</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 136</span></li>
+                        <li><a href=""><span class="circle"></span> 《关于做好2018年国家基本公共卫生服务项目工作的通知》的解读</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 742</span></li>
+                        <li><a href=""><span class="circle"></span> 《制定医院章程试点工作的指导意见》</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 435</span></li>
+                        <li><a href=""><span class="circle"></span> 《关于加强公立医院党的建设工作的意见》政策解读</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 862</span></li>
+                        <li><a href=""><span class="circle"></span> 《食品安全国家标准 植物油》标准等解读材料</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 631</span></li>
+                        <li><a href=""><span class="circle"></span> 《2017年我国卫生健康事业发展统计公报》解读</a><span class="scan"><i class="fa fa-eye" aria-hidden="true"></i> 356</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div th:replace="common/footer::footer"></div>
+</div>
+<script th:replace="common/baseJs::script"></script>
+<script src="/js/lib/layui/layui.js"></script>
+<script th:src="${urls.getForLookupPath('/js/index/index.js')}"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="leftNav" th:remove="tag">
+    <ul class="nav-sidebar">
+        <li th:class="${page=='dataRes'}?'nav-item active':'nav-item'"><a th:href="@{/dataServ/dataRes}" name="data-show-resource">数据资源总览</a></li>
+        <li th:class="${page=='metadataInfo'}?'nav-item active':'nav-item'"><a th:href="@{/dataServ/metadataInfo}" name="data-show-relevance">关联元数据</a></li>
+        <li th:class="${page=='hosDataset'}?'nav-item active':'nav-item'"><a th:href="@{/dataServ/hosDataset}" name="data-show-statistics">医院数据集</a></li>
+    </ul>
+</div>
+</body>
+</html>

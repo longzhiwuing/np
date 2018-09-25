@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link href="/js/lib/layui/css/layui.css" rel="stylesheet" media="screen"> </link>
+    <link th:href="${urls.getForLookupPath('/css/data-details.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid cecd-medical-data">
+    <div th:replace="common/header::header"></div>
+    <div class="row route-nav">
+        <div class="inner">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/index}"><i class="fa fa-home" aria-hidden="true"></i> 首页</a></li>
+                <li><a th:href="@{/dataStand}">数据标准</a></li>
+                <li><a th:href="@{/dataStand}">数据分类</a></li>
+                <li class="active">数据集详情</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row main-content">
+        <div class="inner">
+
+            <div class="introduction">
+                <div class="icon"><i class="fa fa-database" aria-hidden="true"></i></div>
+                <div class="text">
+                    <p class="text-title">患者基本信息数据集</p>
+                    <ul class="text-ul">
+                        <li>数据来源: <span th:text="${orgName}">中电数据服务有限公司</span></li>
+                        <li>所属医院系统: <span th:text="${businessSystem}">HIS系统、LIS系统</span></li>
+                        <li>数据元个数: <span th:text="${drsRows}">200个</span></li>
+                        <li>所属业务分类: <span th:text="${datasetName}">公共业务、门诊数据、住院数据</span></li>
+                        <li>关联数据总记录数: <span th:text="${dataTotal}">234,456,123条</span></li>
+                        <li>所属主题应用: <span th:text="${applicationTheme}">保险、药物研发、科研</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div th:replace="common/dataSet/leftNav::leftNav"></div>
+
+            <div class="data-show">
+                <div class="container" layout:fragment="data-content" th:remove="tag"></div>
+            </div>
+
+        </div>
+    </div>
+    <div th:replace="common/footer::footer"></div>
+</div>
+
+<script th:replace="common/js::script"></script>
+<script src="/js/lib/layui/layui.js"></script>
+<script src="/js/dataSet/main.js"></script>
+<script layout:fragment="script-content" th:remove="tag"></script>
+</body>
+</html>

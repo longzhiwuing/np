@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="hosRes" th:remove="tag">
+    <ul class="top-title">
+        <li th:class="${subpage=='hosHR'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosRes/hosHR}">人力资源</a></li>
+        <li th:class="${subpage=='bedRes'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosRes/bedRes}">床位资源</a></li>
+    </ul>
+</div>
+<div th:fragment="hosMZ" th:remove="tag">
+    <ul class="top-title">
+        <li th:class="${subpage=='workload'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosMZ/workload}">工作负荷</a></li>
+        <li th:class="${subpage=='workefficiency'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosMZ/workefficiency}">工作效率</a></li>
+        <li th:class="${subpage=='feectrl'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosMZ/feectrl}">费用控制</a></li>
+        <li th:class="${subpage=='madeup'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosMZ/madeup}">费用构成</a></li>
+    </ul>
+</div>
+<div th:fragment="hosZY" th:remove="tag">
+    <ul class="top-title">
+        <li th:class="${subpage=='feectrl'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosZY/feectrl}">费用控制</a></li>
+        <li th:class="${subpage=='workload'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosZY/workload}">工作负荷</a></li>
+        <li th:class="${subpage=='workefficiency'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosZY/workefficiency}">工作效率</a></li>
+        <li th:class="${subpage=='madeup'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosZY/madeup}">费用构成</a></li>
+    </ul>
+</div>
+<div th:fragment="hosAllFee" th:remove="tag">
+    <ul class="top-title">
+        <li th:class="${subpage=='feectrl'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosAllFee/feectrl}">费用控制</a></li>
+        <li th:class="${subpage=='madeup'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosAllFee/madeup}">费用构成</a></li>
+        <li th:class="${subpage=='medicalFee'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosAllFee/medicalFee}">医疗费用</a></li>
+        <li th:class="${subpage=='increaseRate'}?'top-title-item active':'top-title-item'"><a th:href="@{/hosAllFee/increaseRate}">医疗费用增长率</a></li>
+    </ul>
+</div>
+</body>
+</html>

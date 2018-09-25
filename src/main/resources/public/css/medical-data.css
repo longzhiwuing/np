@@ -1,0 +1,290 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: "微软雅黑","黑体";
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.login-bar {
+  height: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.login-bar .welcome {
+  color: #666;
+  float: left;
+  line-height: 30px;
+}
+.login-bar .welcome > i {
+  font-size: 10px;
+  color: #666;
+}
+.login-bar .login {
+  line-height: 30px;
+  float: right;
+  color: #666;
+}
+.login-bar .login > i {
+  color: #666;
+}
+
+.header-bar {
+  padding: 20px 0;
+}
+.header-bar .title {
+  float: left;
+}
+.header-bar .search {
+  float: right;
+}
+.header-bar .search div.form-group {
+  position: relative;
+}
+.header-bar .search div.form-group input.form-control {
+  width: 400px;
+  height: 40px;
+  border-radius: 0;
+  padding-right: 60px;
+}
+.header-bar .search div.form-group .search-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  border-radius: 0;
+  background-color: #4a83f8;
+  border: none;
+  color: #fff;
+}
+
+.navbar-box .navbar {
+  background-color: #4a83f8;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+}
+.navbar-box .navbar .navbar-nav > li > a {
+  color: #e9e9e9;
+  font-size: 16px;
+  padding: 15px 25px;
+  background: none;
+}
+.navbar-box .navbar .navbar-nav > li > a:hover {
+  background: none;
+  color: #fff;
+}
+.navbar-box .navbar .navbar-nav > li > a:focus {
+  background: none;
+}
+.navbar-box .navbar .navbar-nav .dropdown:hover > a {
+  background: none;
+}
+.navbar-box .navbar .navbar-nav .dropdown .dropdown-menu {
+  min-width: 0;
+}
+.navbar-box .navbar .navbar-nav .dropdown .dropdown-menu > li > a {
+  padding: 10px 20px;
+}
+.navbar-box .navbar .navbar-nav .dropdown .dropdown-menu .active {
+  background-color: #4a83f8;
+  color: #fff;
+}
+.navbar-box .navbar .navbar-nav .active > a {
+  background: none;
+  position: relative;
+  color: #fff;
+}
+.navbar-box .navbar .navbar-nav .active > a:before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  width: 100%;
+  height: 4px;
+  background-color: #F8C34A;
+}
+
+.footer {
+  position: relative;
+  background-color: #121212;
+  padding-top: 15px;
+  padding-bottom: 60px;
+}
+.footer .footer-nav {
+  overflow: auto;
+}
+.footer .footer-nav .footer-nav-list {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+.footer .footer-nav .footer-nav-list .list-title {
+  color: #fff;
+  font-size: 16px;
+  line-height: 46px;
+}
+.footer .footer-nav .footer-nav-list .list-ul .list-item > a {
+  color: #999;
+  line-height: 36px;
+}
+.footer .copy {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #666;
+  text-align: center;
+}
+
+.cecd-medical-data .route-nav {
+  margin-top: 30px;
+}
+.cecd-medical-data .route-nav .breadcrumb {
+  background: none;
+  padding: 0;
+}
+.cecd-medical-data .main-content {
+  margin-bottom: 50px;
+}
+.cecd-medical-data .main-content .nav-sidebar {
+  float: left;
+  margin-right: 20px;
+}
+.cecd-medical-data .main-content .nav-sidebar .nav-item {
+  margin-bottom: 15px;
+  background-color: #ddd;
+  width: 160px;
+  padding: 15px 0;
+  cursor: pointer;
+  text-align: center;
+}
+.cecd-medical-data .main-content .nav-sidebar .nav-item > a {
+  color: #333;
+}
+.cecd-medical-data .main-content .nav-sidebar .nav-item > a:hover {
+  color: #333;
+  text-decoration: none;
+}
+.cecd-medical-data .main-content .nav-sidebar .active {
+  background-color: #4a83f8;
+}
+.cecd-medical-data .main-content .nav-sidebar .active > a {
+  color: #fff;
+}
+.cecd-medical-data .main-content .nav-sidebar .active > a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.cecd-medical-data .main-content .data-show {
+  float: left;
+  width: calc(1200px - 160px - 20px);
+}
+.cecd-medical-data .main-content .data-show .data-show-top {
+  overflow: auto;
+  background-color: #ddd;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+.cecd-medical-data .main-content .data-show .data-show-top .top-title {
+  float: left;
+  font-size: 16px;
+  font-weight: 900;
+}
+.cecd-medical-data .main-content .data-show .data-show-top .table-echart {
+  float: right;
+  margin: 0;
+}
+.cecd-medical-data .main-content .data-show .data-show-top .table-echart > li {
+  float: left;
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.cecd-medical-data .main-content .data-show .data-show-top .table-echart .active > i {
+  color: #4a83f8;
+}
+.cecd-medical-data .main-content .data-show .introduction {
+  outline: 1px solid #ccc;
+  overflow: auto;
+  margin-bottom: 15px;
+}
+.cecd-medical-data .main-content .data-show .introduction .icon {
+  float: left;
+  background-color: #f9f9f9;
+  font-size: 80px;
+  text-align: center;
+  width: 160px;
+  height: 196px;
+  position: relative;
+  padding-top: 36px;
+}
+.cecd-medical-data .main-content .data-show .introduction .text {
+  float: left;
+  padding: 15px 30px;
+  width: calc(1200px - 160px - 20px - 160px);
+}
+.cecd-medical-data .main-content .data-show .introduction .text .text-title {
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  margin-top: 6px;
+}
+.cecd-medical-data .main-content .data-show .introduction .text .text-ul > li {
+  float: left;
+  width: 50%;
+  margin-bottom: 10px;
+}
+.cecd-medical-data .main-content .data-show .echart-box {
+  width: 100%;
+  height: 280px;
+  outline: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 15px;
+}
+.cecd-medical-data .main-content .data-show .form-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+.cecd-medical-data .main-content .data-show .form-box div.form-group {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.cecd-medical-data .main-content .data-show .form-box div.form-group select.form-control, .cecd-medical-data .main-content .data-show .form-box div.form-group input.form-control {
+  width: 245px;
+  border-radius: 4px;
+}
+.cecd-medical-data .main-content .data-show .form-box .submit-btn {
+  display: block;
+  background-color: #4a83f8;
+  border: none;
+  color: #fff;
+  padding: 6px 16px;
+}
+
+/*# sourceMappingURL=medical-data.css.map */

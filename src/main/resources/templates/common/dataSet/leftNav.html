@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="leftNav" th:remove="tag">
+    <ul class="nav-sidebar">
+        <li th:class="${page=='ds_desc'}?'nav-item active':'nav-item'" name="data-show-resource"><a th:href="@{'/dataStand/classify/dsDesc?id='+${drsItemId}}">描述</a></li>
+        <li th:class="${page=='ds_metadata'}?'nav-item active':'nav-item'" name="data-show-relevance"><a th:href="@{'/dataStand/classify/dsMetadata?id='+${datasetStrucId}}">元数据</a></li>
+        <li th:class="${page=='ds_associatingData'}?'nav-item active':'nav-item'" name="data-show-statistics"><a th:href="@{'/dataStand/classify/dsAssociateData?id='+${drsItemId}}">关联数据</a></li>
+    </ul>
+</div>
+</body>
+</html>

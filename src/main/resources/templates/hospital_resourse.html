@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link th:href="${urls.getForLookupPath('/css/index.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 row">
+            <div class="col-md-6 ">
+                <input class="form-control" type="date" id="startDate" name="startDate" th:value="2016-01-01" style="width:172px;"></input>
+            </div>
+            <div class="col-md-6">
+                <input class="form-control" type="date" id="endDate" name="endDate" th:value="2018-07-07" style="width:172px;"></input>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-default" href="javascript:search()">
+                <i class="glyphicon glyphicon-search icon-white"></i> 搜索
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="doctorCount" style="width: 600px;height:450px;"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="nurseCount" style="width: 600px;height:450px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="docNurseRatio" style="width: 600px;height:450px;"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="docBedRatio" style="width: 600px;height:450px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="oeManTime" style="width: 600px;height:450px;"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="bedOpenNum" style="width: 600px;height:450px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="bedOpenCount" style="width: 600px;height:450px;"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="docAvgOeManTime" style="width: 600px;height:450px;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="outBedNum" style="width: 600px;height:450px;"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="docLoadBedCount" style="width: 600px;height:450px;"></div>
+        </div>
+    </div>
+    <div id="table">
+        <table id="test-table" class="col-xs-12" data-toolbar="#test-table-toolbar"></table>
+    </div>
+</div>
+<script th:replace="common/js::script"></script>
+<script th:src="${urls.getForLookupPath('/js/hospital_resourse.js')}"></script>
+<script th:inline="javascript">
+
+    $(document).ready(function(){
+        var param = {'startDate':$("#startDate").val(),'endDate':$("#endDate").val()};
+        showEcharts(param);
+    });
+
+    function showEcharts(param){
+        showEChartWithParam('doctorCount',getOption('医生人数','人次','bar'),'/api/doctorCount/echart.json',param,callback);
+        showEChartWithParam('nurseCount',getOption('护士人数','人次','bar'),'/api/nurseCount/echart.json',param,callback);
+        showEChartWithParam('docNurseRatio',getOption('医生护士比','比率','line'),'/api/docNurseRatio/echart.json',param,callback);
+        showEChartWithParam('docBedRatio',getOption('医生床位比','比率','line'),'/api/docBedRatio/echart.json',param,callback);
+        showEChartWithParam('oeManTime',getOption('门诊急诊人次','人次','bar'),'/api/oEManTime/echart.json',param,callback);
+        showEChartWithParam('bedOpenNum',getOption('平均开放床位数','数量','bar'),'/api/bedOpenNum/echart.json',param,callback);
+        showEChartWithParam('bedOpenCount',getOption('实际开放总床日数','数量','bar'),'/api/bedOpenCount/echart.json',param,callback);
+        showEChartWithParam('docAvgOeManTime',getOption('医师平均担负门急诊人次','人次','bar'),'/api/docAvgOeManTime/echart.json',param,callback);
+        showEChartWithParam('outBedNum',getOption('出院者床日数','数量','bar'),'/api/outBedNum/echart.json',param,callback);
+        showEChartWithParam('docLoadBedCount',getOption('医师平均担负住院床日数','数量','bar'),'/api/docLoadBedCount/echart.json',param,callback);
+    }
+
+    function search(){
+        var param = {'startDate':$("#startDate").val(),'endDate':$("#endDate").val()};
+        showEcharts(param);
+    }
+//    showEChart('main2',getOptionPie(),'/api/signBill/echartPie.json',callbackPie);
+//    showTable('test-table','/api/signBill/table.json',getTableColumns());
+</script>
+</body>
+</html>

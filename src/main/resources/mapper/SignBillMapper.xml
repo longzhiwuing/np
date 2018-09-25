@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.SignBillMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <resultMap id="SignBillData" type="com.cecdat.np.dto.SignBillData" >
+        <result column="get_count" property="getCount"/>
+        <result column="handle_count" property="handleCount"/>
+        <result column="dim_year" property="dimYear" />
+    </resultMap>
+    <select id="selectSignBillList" resultMap="SignBillData">
+        select get_count,handle_count,dim_year from year_sign_bill_statistics;
+    </select>
+</mapper>

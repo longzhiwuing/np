@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/dataServ/base"><!-- layout文件路径-->
+<head>
+    <title>数据服务</title>
+</head>
+<body>
+
+<div layout:fragment="data-content">
+    <div class="data-show-top">
+        <p class="top-title">医院数据集</p>
+        <ul class="table-echart">
+            <!-- <li class="active" name="data-echarts" data-toggle="tooltip" data-placement="top" title="图标显示"><i class="fa fa-pie-chart" aria-hidden="true"></i></li>-->
+            <li data-toggle="tooltip" name="data-table" data-placement="top" title="表格显示"><i class="fa fa-table" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    <div class="data-show-module" id="data-table">
+        <!--<div class="form-box">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>省市选择</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>福州市</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>区县选择</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>闽清县</option>
+                        <option>闽侯县</option>
+                        <option>永泰县</option>
+                        <option>连江县</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>医院等级</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>三甲</option>
+                        <option>三乙</option>
+                        <option>三丙</option>
+                        <option>二甲</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>医院名称</label>
+                    <select class="form-control">
+                        <option>全部</option>
+                        <option>福州一院</option>
+                        <option>福州二院</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default submit-btn">确认</button>
+            </form>
+        </div>-->
+        <table id="hospital-dataset-table" class="col-xs-12" data-toolbar="#test-table-toolbar"></table>
+    </div>
+</div>
+
+
+<div layout:fragment="script-content" th:remove="tag">
+    <script th:src="${urls.getForLookupPath('/js/dataServ/hos-table.js')}"></script>
+    <script th:inline="javascript">
+        showTable('hospital-dataset-table','/api/selectDataSet.json',getHospitalTableColumns());
+    </script>
+</div>
+</body>
+</html>

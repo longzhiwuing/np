@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link th:href="${urls.getForLookupPath('/css/login.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row tip"><span id="errorinfo" th:text="${info?.message}"></span><span class="close">X</span></div>
+    <div class="row">
+        <div class="wrap">
+            <div class="logo"><img src="/images/logo.png" alt="" /><p class="logo-text">国家平台</p>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p class="login selected">登录</p>
+                    <p class="register"><a th:href="@{/register}">注册</a></p>
+                </div>
+                <form id="loginForm" th:action="@{/login}" th:method="post" th:object="${loginForm}">
+                    <div class="input-group first-group">
+                        <span class="input-group-addon">用户名</span>
+                        <input type="text" name="username" class="form-control" aria-describedby="basic-addon3" />
+                        <span class="input-group-addon errorinfo error-user show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" name="password" class="form-control" aria-describedby="basic-addon3" />
+                        <span class="input-group-addon errorinfo error-password show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">验证码</span>
+                        <input type="text" name="vcode" class="form-control code-control" aria-describedby="basic-addon3" />
+                        <span class="code"><img id="vcode" th:src="@{/vcode}" /></span>
+                        <span class="input-group-addon errorinfo error-code show"></span>
+                    </div>
+                </form>
+                <button type="button" id="submitBtn" class="btn btn-default">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="common/baseJs::script"></script>
+<script src="/webjars/jquery-validation/jquery.validate.js"></script>
+<script src="/js/lib/layer/layer.js"></script>
+<script th:src="${urls.getForLookupPath('/js/login/login.js')}"></script>
+<script th:inline="javascript">
+    showMsg([[${info?.message}]]);
+</script>
+</body>
+</html>

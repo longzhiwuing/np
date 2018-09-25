@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link href="/js/lib/layui/css/layui.css" rel="stylesheet" media="screen"> </link>
+    <link th:href="${urls.getForLookupPath('/css/medical-data.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid cecd-medical-data">
+    <div th:replace="common/header::header"></div>
+
+    <div class="row route-nav">
+        <div class="inner">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/dataServ}"><i class="fa fa-home" aria-hidden="true"></i> 数据服务</a></li>
+                <li><a th:href="@{/dataServ}">医疗大数据</a></li>
+                <li class="active">数据资源总览</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row main-content">
+        <div class="inner">
+            <div th:replace="common/dataServ/leftNav::leftNav"></div>
+            <!--数据资源总览 start-->
+            <div class="data-show">
+                <div class="container" layout:fragment="data-content" th:remove="tag"></div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="common/footer::footer"></div>
+</div>
+<script th:replace="common/js::script"></script>
+<script src="/js/lib/layui/layui.js"></script>
+<script layout:fragment="script-content" th:remove="tag"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.StHospitcalKeyIndicatorMMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="getSystemData" resultType="java.util.Map">
+       select his_sys_name as name, sum(other_count_month) as total from st_hospitcal_key_indicator_m GROUP BY his_sys_name
+    </select>
+    <select id="getCollectionData" resultType="java.util.Map">
+        select yer_month as month,sum(other_count_month) as total from st_hospitcal_key_indicator_m where yer_month like '%2018%' GROUP BY yer_month order by yer_month asc
+    </select>
+    <select id="getControlData" resultType="java.util.Map">
+        select yer_month as month,sum(other_count_month)  as total from st_hospitcal_key_indicator_m where done_flag = '1' and yer_month like '%2018%' GROUP BY yer_month order by yer_month asc
+    </select>
+
+    <select id="selectSysNameAndCount" resultType="java.util.HashMap">
+        select his_sys_name as sysname,sum(other_count_month) as syscount from st_hospitcal_key_indicator_m GROUP BY his_sys_name
+    </select>
+</mapper>

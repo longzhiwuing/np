@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/dataSet/base"><!-- layout文件路径-->
+<head>
+    <title>数据标准</title>
+</head>
+<body>
+
+<div layout:fragment="data-content">
+    <div class="data-show-module" id="data-table">
+        <table data-toggle="table" data-pagination="true"></table>
+    </div>
+</div>
+
+<div layout:fragment="script-content" th:remove="tag">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.HospitalResourseMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <resultMap id="HospitalResourseData" type="com.cecdat.np.dto.HospitalResourseData">
+        <result column="doctor_count" property="doctorCount"/>
+        <result column="hospital_name" property="hospitalName"/>
+        <result column="nurse_count" property="nurseCount"/>
+        <result column="doc_nurse_ratio" property="docNurseRatio"/>
+        <result column="doc_bed_ratio" property="docBedRatio"/>
+        <result column="oe_manTime" property="oeManTime"/>
+        <result column="bed_open_num" property="bedOpenNum"/>
+        <result column="bed_open_count" property="bedOpenCount"/>
+        <result column="doc_avg_oe_manTime" property="docAvgOeManTime"/>
+        <result column="out_bed_num" property="outBedNum"/>
+        <result column="doc_load_bed_count" property="docLoadBedCount"/>
+
+    </resultMap>
+
+    <!-- 医生人数 -->
+    <select id="selectDoctorCountByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select "sum"(a.staff_doctor_rens) as doctor_count, b.hospital_name as hospital_name from dim_staff_dict a LEFT JOIN st_hospitcal_info b ON a.org_code = b.hospital_id where a.create_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 护士人数 -->
+    <select id="selectNurseCountByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select "sum"(a.staff_nurse_rens) as nurse_count, b.hospital_name as hospital_name from dim_staff_dict as a LEFT JOIN st_hospitcal_info as b ON a.org_code = b.hospital_id where a.create_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 医生护士比 -->
+    <select id="selectDocNurseRatioByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round("sum"(a.staff_doctor_rens)/"sum"(a.staff_nurse_rens),2)  as doc_nurse_ratio, b.hospital_name as hospital_name from dim_staff_dict a LEFT JOIN st_hospitcal_info b on a.org_code = b.hospital_id where a.create_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 医生床位比 -->
+    <select id="selectDocBedRatioByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round(a.doctor_count/b.bed_user_num, 2) as doc_bed_ratio,a.hospital_name as hospital_name from (select "sum"(m.staff_doctor_rens) as doctor_count, m.org_code as org_code, n.hospital_name as hospital_name from dim_staff_dict m LEFT JOIN st_hospitcal_info n on m.org_code = n.hospital_id GROUP BY m.org_code,n.hospital_name) a LEFT JOIN (select "avg"(bed_open_num) as bed_user_num, org_code as org_code from fact_hospital_resource_kpi_m where dim_month BETWEEN #{startDate,jdbcType=VARCHAR} AND #{endDate,jdbcType=VARCHAR} GROUP BY org_code) b on a.org_code = b.org_code  ORDER BY a.hospital_name ASC;
+    </select>
+    <!-- 门急诊人次 -->
+    <select id="selectOEManTimeByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round("avg"(a.disp_register_num),0) as oe_manTime, b.hospital_name as hospital_name from fact_hospital_kpi_d a LEFT JOIN st_hospitcal_info b ON a.org_code = b.hospital_id where a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+
+    <!-- 平均开放床位数 -->
+    <select id="selectBedOpenNumByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round("avg"(a.bed_open_num),0) as bed_open_num, b.hospital_name as hospital_name from fact_hospital_resource_kpi_m a LEFT JOIN st_hospitcal_info b ON a.org_code = b.hospital_id where a.dim_month BETWEEN #{startDate,jdbcType=VARCHAR} AND #{endDate,jdbcType=VARCHAR} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 实际开放总床日数 -->
+    <select id="selectBedOpenCountByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select "sum"(a.bed_open_num) as bed_open_count, b.hospital_name as hospital_name from fact_hospital_resource_kpi_m a LEFT JOIN st_hospitcal_info b ON a.org_code = b.hospital_id where a.dim_month BETWEEN #{startDate,jdbcType=VARCHAR} AND #{endDate,jdbcType=VARCHAR}  GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 医师平均担负门急诊人次 -->
+    <select id="selectDocAvgOeManTimeByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round("avg"(a.disp_register_num)/"avg"(a.staff_doctor_rens),2)  as doc_avg_oe_manTime, b.hospital_name as hospital_name from fact_hospital_kpi_d a LEFT JOIN st_hospitcal_info b on a.org_code = b.hospital_id where a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 出院者床日数 -->
+    <select id="selectOutBedNumByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select "sum"(a.out_bed_num) as out_bed_num, b.hospital_name as hospital_name from fact_resi_out_kpi_d a LEFT JOIN st_hospitcal_info b on a.org_code = b.hospital_id where a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!-- 医师平均担负住院床日数 -->
+    <select id="selectDocLoadBedCountByDate" parameterType="java.util.Map" resultMap="HospitalResourseData">
+        select round("avg"(b.out_bed_num)/"avg"(a.staff_doctor_rens),0) as doc_load_bed_count,c.hospital_name as hospital_name from fact_hospital_kpi_d a,fact_resi_out_kpi_d b,st_hospitcal_info c where a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} and b.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} and a.org_code = c.hospital_id and b.org_code = c.hospital_id GROUP BY c.hospital_name ORDER BY b.hospital_name ASC;
+    </select>
+    <!--全院费用分析表格-->
+    <select id="queryTotalCostTableByDate" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+      SELECT
+          s.hospital_name AS "hospital_name",
+          f.org_code AS "org_code",
+          SUM ( income_total ) AS "income_total",
+          SUM ( income_physic ) AS "income_physic",
+          SUM ( income_material ) AS "income_material",
+          SUM ( income_check ) AS "income_check",
+          SUM ( income_laboratory ) AS "income_laboratory",
+          SUM ( income_disp ) AS "income_disp",
+          SUM ( disp_register_num ) AS "disp_register_num",
+          SUM ( income_resi ) AS "income_resi",
+          SUM ( settle_num ) AS "settle_num"
+      FROM
+          fact_hospital_kpi_d f
+          LEFT JOIN st_hospitcal_info s ON f.org_code = s.hospital_id
+      <where>
+          <if test="startDate != null and endDate != null">
+              f.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+          </if>
+          <if test="searchText != null and searchText != '' ">
+              and s.hospital_name LIKE '%'||#{searchText}||'%'
+          </if>
+      </where>
+      GROUP BY
+          f.org_code,
+          s.hospital_name
+      <if test="sortName != null and sortName != '' ">
+          ORDER BY #{sortName}
+          <choose>
+              <when test="sortOrder == 'asc' or sortOrder == 'ASC'">
+                  ASC
+              </when>
+              <otherwise>
+                  DESC
+              </otherwise>
+          </choose>
+      </if>
+      <if test="pageSize != null and pageSize != '' and pageStartIndex != null and pageStartIndex != '' ">
+          limit #{pageSize} offset #{pageStartIndex}
+      </if>
+      ORDER BY b.hospital_name ASC
+    </select>
+</mapper>

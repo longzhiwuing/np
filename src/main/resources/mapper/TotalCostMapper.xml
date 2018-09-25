@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.TotalCostMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!--全院药费占比Echart图-->
+    <select id="queryPhysicByTotalEchart" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+      SELECT
+        hospital_name,
+        SUM(income_total) income_total,
+        SUM(income_physic) income_physic
+      FROM
+        st_hospitcal_info shi,
+        fact_hospital_kpi_d fhkd
+      WHERE
+        shi.hospital_id = fhkd.org_code
+      AND
+        dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+      GROUP BY
+        hospital_name
+    </select>
+
+    <!--全院耗材费占比Echart图-->
+    <select id="queryMaterialByTotalEchart" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+        SELECT
+        hospital_name,
+        SUM(income_total) income_total,
+        SUM(income_material) income_material
+        FROM
+        st_hospitcal_info shi,
+        fact_hospital_kpi_d fhkd
+        WHERE
+        shi.hospital_id = fhkd.org_code
+        AND
+        dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+        GROUP BY
+        hospital_name
+    </select>
+
+    <!--全院检查费占比Echart图-->
+    <select id="queryCheckByTotalEchart" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+        SELECT
+        hospital_name,
+        SUM(income_total) income_total,
+        SUM(income_check) income_check
+        FROM
+        st_hospitcal_info shi,
+        fact_hospital_kpi_d fhkd
+        WHERE
+        shi.hospital_id = fhkd.org_code
+        AND
+        dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+        GROUP BY
+        hospital_name
+    </select>
+
+    <!--全院化验费占比Echart图-->
+    <select id="queryLaboratoryByTotalEchart" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+        SELECT
+        hospital_name,
+        SUM(income_total) income_total,
+        SUM(income_laboratory) income_laboratory
+        FROM
+        st_hospitcal_info shi,
+        fact_hospital_kpi_d fhkd
+        WHERE
+        shi.hospital_id = fhkd.org_code
+        AND
+        dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+        GROUP BY
+        hospital_name
+    </select>
+
+    <!--全院费用占比Echart饼图-->
+    <select id="queryTotalCostEchartPie" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+        SELECT
+          SUM( income_physic ) income_physic,
+          SUM ( income_material) income_material,
+          SUM (income_treat_disp)+SUM (income_treat_resi) income_treat,
+          SUM ( income_check ) income_check,
+          SUM ( income_laboratory ) income_laboratory,
+          SUM ( income_operation_disp )+SUM (income_operation_resi) income_operation,
+          SUM ( income_other_disp )+SUM (income_other_resi) income_other,
+          SUM ( income_bed_disp )+SUM (income_bed_resi) income_bed
+        FROM
+          fact_hospital_kpi_d
+        WHERE
+          dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+    </select>
+
+    <!--全院费用分析表格。-->
+    <select id="queryTotalCostTableByDate" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+      SELECT
+          s.hospital_name AS "hospital_name",
+          f.org_code AS "org_code",
+          SUM ( income_total ) AS "income_total",
+          SUM ( income_physic ) AS "income_physic",
+          SUM ( income_material ) AS "income_material",
+          SUM ( income_check ) AS "income_check",
+          SUM ( income_laboratory ) AS "income_laboratory",
+          SUM ( income_disp ) AS "income_disp",
+          SUM ( disp_register_num ) AS "disp_register_num",
+          SUM ( income_resi ) AS "income_resi",
+          SUM ( settle_num ) AS "settle_num"
+      FROM
+          fact_hospital_kpi_d f
+          LEFT JOIN st_hospitcal_info s ON f.org_code = s.hospital_id
+      WHERE
+          f.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+      GROUP BY
+          f.org_code,
+          s.hospital_name;
+    </select>
+    <select id="selectCount" parameterType="java.util.Map" resultType="com.cecdat.np.dto.TotalCostData">
+        SELECT COUNT(1) as total_cost_count FROM (SELECT COUNT(1)
+        FROM
+            fact_hospital_kpi_d f
+            LEFT JOIN st_hospitcal_info s ON f.org_code = s.hospital_id
+        GROUP BY
+            s.hospital_name) a;
+    </select>
+</mapper>

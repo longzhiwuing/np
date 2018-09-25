@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.FactHospitalKpiDMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <resultMap id="BaseResultMap" type="HashMap">
+        <result column="org_code" property="orgCode" jdbcType="VARCHAR"></result>
+        <result column="DISP_REGISTER_NUM" property="dispRegisterNum" jdbcType="VARCHAR"></result>
+        <result column="DISP_EMERGENCY_NUM" property="dispEmergencyNum" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="countByHospitalCodeForCharts" resultMap="BaseResultMap">
+      select org_code, sum(DISP_REGISTER_NUM) as DISP_REGISTER_NUM,sum(DISP_EMERGENCY_NUM) as DISP_EMERGENCY_NUM from fact_hospital_kpi_d  GROUP BY org_code
+    </select>
+
+</mapper>

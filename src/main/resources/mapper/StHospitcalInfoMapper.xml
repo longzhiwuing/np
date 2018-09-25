@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.StHospitcalInfoMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="getTotalHospitalData" resultType="java.lang.Integer">
+        select sum(hospital_data_count) from st_hospitcal_info
+    </select>
+    <select id="getTopThreeHospitalData" resultType="java.lang.Integer">
+        select sum(hospital_data_count) from st_hospitcal_info where hospital_level like '%三甲%'
+    </select>
+
+    <select id="selectNameAndCount" resultType="java.util.HashMap">
+        SELECT hospital_name,hospital_data_count from st_hospitcal_info
+    </select>
+
+</mapper>

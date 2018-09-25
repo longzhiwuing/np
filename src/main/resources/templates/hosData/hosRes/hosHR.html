@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/hosData/base"><!-- layout文件路径-->
+<head>
+    <title>页面1</title>
+</head>
+<body>
+<div layout:fragment="table-select" th:remove="tag">
+    <div th:replace="common/hosData/tableSelect::hosRes"></div>
+</div>
+<div layout:fragment="subNav" th:remove="tag">
+    <div th:replace="common/hosData/subNav::hosRes"></div>
+</div>
+<div layout:fragment="echart-content">
+    <div class="echart-box" id="doctorCount"></div>
+    <div class="echart-box" id="nurseCount"></div>
+    <div class="echart-box" id="docNurseRatio"></div>
+    <div class="echart-box" id="docBedRatio"></div>
+</div>
+<div layout:fragment="table-content">
+    <table id="hos-cost-analysis-table" class="col-xs-12"></table>
+</div>
+
+<div layout:fragment="script-content" th:remove="tag">
+    <script th:src="${urls.getForLookupPath('/js/hosData/hosRes/hosHR.js')}"></script>
+</div>
+
+<script type="text/javascript">
+//    showMyEcharts();
+
+</script>
+</body>
+</html>

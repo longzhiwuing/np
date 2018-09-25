@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link href="/css/lib/bootstrap-table.min.css" rel="stylesheet" media="screen" />
+    <link th:href="${urls.getForLookupPath('/css/index.css')}" rel="stylesheet" />
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+<div id="table">
+    <table id="test-table" class="col-xs-12" data-toolbar="#test-table-toolbar"></table>
+</div>
+<script th:replace="common/js::script"></script>
+<script th:src="${urls.getForLookupPath('/js/demo.js')}"></script>
+<script th:inline="javascript">
+    showEChart('main',getOption(),'/api/demo/echart.json',callback);
+    showTable('test-table','/api/demo/table.json',getTableColumns());
+</script>
+</body>
+</html>

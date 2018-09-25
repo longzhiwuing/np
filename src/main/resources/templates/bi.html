@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link th:href="${urls.getForLookupPath('/css/BI.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="cecd-bi">
+    <header class="header-title">国家健康医疗大数据总览</header>
+    <div class="content">
+        <div class="top">
+            <div class="top-left">
+                <div class="top-left-top">
+                    <span class="tab1"></span>
+                    <span class="tab2"></span>
+                    <span class="tab3"></span>
+                    <span class="tab4"></span>
+                    <span class="tab5"></span>
+                    <span class="tab6"></span>
+                    <span class="tab7"></span>
+                    <span class="tab8"></span>
+                    <div class="echart-box" style="width:50%; float:left" id="profit_proportion"></div>
+                    <div class="echart-box" style="float:right; width:50%" id="datas_proportion"></div>
+                </div>
+                <div class="top-left-bottom">
+                    <span class="tab1"></span>
+                    <span class="tab2"></span>
+                    <span class="tab3"></span>
+                    <span class="tab4"></span>
+                    <span class="tab5"></span>
+                    <span class="tab6"></span>
+                    <span class="tab7"></span>
+                    <span class="tab8"></span>
+                    <div class="echart-box" id="distribution"></div>
+                </div>
+            </div>
+            <div class="top-center">
+                <div class="echart-box" id="homemap"></div>
+            </div>
+            <div class="top-right">
+                <div class="top-right-top">
+                    <span class="tab1"></span>
+                    <span class="tab2"></span>
+                    <span class="tab3"></span>
+                    <span class="tab4"></span>
+                    <span class="tab5"></span>
+                    <span class="tab6"></span>
+                    <span class="tab7"></span>
+                    <span class="tab8"></span>
+                    <div class="echart-box" id="year_sum"></div>
+                </div>
+                <div class="top-right-bottom">
+                    <span class="tab1"></span>
+                    <span class="tab2"></span>
+                    <span class="tab3"></span>
+                    <span class="tab4"></span>
+                    <span class="tab5"></span>
+                    <span class="tab6"></span>
+                    <span class="tab7"></span>
+                    <span class="tab8"></span>
+                    <div class="echart-box" id="quarter_sum"></div>
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <span class="tab1"></span>
+            <span class="tab2"></span>
+            <span class="tab3"></span>
+            <span class="tab4"></span>
+            <span class="tab5"></span>
+            <span class="tab6"></span>
+            <span class="tab7"></span>
+            <span class="tab8"></span>
+            <div class="echart-box" id="areaReceivedPaymentId"></div>
+        </div>
+        <div class="bottom">
+            <div class="bottom-left">
+                <span class="tab1"></span>
+                <span class="tab2"></span>
+                <span class="tab3"></span>
+                <span class="tab4"></span>
+                <span class="tab5"></span>
+                <span class="tab6"></span>
+                <span class="tab7"></span>
+                <span class="tab8"></span>
+                <div class="echart-box" id="funnelLeftId"></div>
+            </div>
+            <div class="bottom-right">
+                <span class="tab1"></span>
+                <span class="tab2"></span>
+                <span class="tab3"></span>
+                <span class="tab4"></span>
+                <span class="tab5"></span>
+                <span class="tab6"></span>
+                <span class="tab7"></span>
+                <span class="tab8"></span>
+                <div class="echart-box" id="funnelRightId"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="common/js::script"></script>
+<script th:src="${urls.getForLookupPath('/js/bi/home.js')}"></script>
+<script th:inline="javascript">
+    // showHomeMap('homemap','/api/homemap/echart.json');
+    showChinaMap('homemap','/api/homemap/echart.json');
+    showAreaReceivedPaymentEChart('areaReceivedPaymentId','/api/areaReceivedPayments/echart.json');
+    showFunnelLeft('funnelLeftId','/api/medicalRate/echart.json');
+    showFunnelRight('funnelRightId','/api/areaReceived/echart.json');
+    showCircleCharts('profit_proportion', '/api/hospitalsProportion');
+    showCircleCharts('datas_proportion', '/api/datasProportion');
+    showRoseCharts('distribution','/api/chargeDistribution');
+    showLineCharts('year_sum','/api/yearNum');
+    showLineCharts('quarter_sum','/api/quarterSum');
+
+
+</script>
+</body>
+</html>

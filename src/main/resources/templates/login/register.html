@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/baseCss::link"/>
+    <link th:href="${urls.getForLookupPath('/css/login.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row tip"><span id="errorinfo" th:text="${info?.message}"></span><span class="close">X</span></div>
+    <div class="row">
+        <div class="wrap">
+            <div class="logo"><img src="/images/logo.png" alt="" /><p class="logo-text">国家平台</p>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p class="login"><a th:href="@{/login}">登录</a></p>
+                    <p class="register selected">注册</p>
+                </div>
+                <form id="registerForm" th:action="@{/register}" th:method="post">
+                    <div class="input-group first-group">
+                        <span class="input-group-addon">邮箱</span>
+                        <input type="text" name="email" class="form-control" aria-describedby="basic-addon3" value="aaa@aa.com"/>
+                        <span class="input-group-addon errorinfo show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">用户名</span>
+                        <input type="text" name="userName" class="form-control" aria-describedby="basic-addon3" value="xxx"/>
+                        <span class="input-group-addon errorinfo show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" id="password" name="password" class="form-control" aria-describedby="basic-addon3" value="123456"/>
+                        <span class="input-group-addon errorinfo show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">确认密码</span>
+                        <input type="password" name="confirmPassword" class="form-control" aria-describedby="basic-addon3" value="123456"/>
+                        <span class="input-group-addon errorinfo show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">证件类型</span>
+                        <input type="password" name="cardType" class="form-control" aria-describedby="basic-addon3" value="1"/>
+                        <span class="input-group-addon errorinfo  show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">证件号码</span>
+                        <input type="password" name="cardNum" class="form-control" aria-describedby="basic-addon3" value="111111"/>
+                        <span class="input-group-addon errorinfo  show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">选择身份</span>
+                        <input type="password" name="userType" class="form-control" aria-describedby="basic-addon3" value="1"/>
+                        <span class="input-group-addon errorinfo  show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">组织机构代码</span>
+                        <input type="password" name="orgCode" class="form-control" aria-describedby="basic-addon3" value="1111"/>
+                        <span class="input-group-addon errorinfo  show"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">联系电话</span>
+                        <input type="password" name="phone" class="form-control" aria-describedby="basic-addon3" value="13811111111"/>
+                        <span class="input-group-addon errorinfo  show"></span>
+                    </div>
+
+                </form>
+                <button type="button" id="submitBtn" class="btn btn-default">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="common/baseJs::script"></script>
+<script src="/webjars/jquery-validation/jquery.validate.js"></script>
+<script src="/js/lib/layer/layer.js"></script>
+<script th:src="${urls.getForLookupPath('/js/register/register.js')}"></script>
+<script th:inline="javascript">
+    showMsg([[${info?.message}]]);
+</script>
+</body>
+</html>

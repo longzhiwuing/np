@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cecdat.np.mapper.OutpatientAnalysisMapper">
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <resultMap id="OutpatientAnalysisDTO" type="com.cecdat.np.dto.OutpatientAnalysisDTO">
+        <result column="registerCount" property="dispRegisterNumByTime"/>
+        <result column="regCount" property="avgFeeByPeople"/>
+        <result column="medicineProportion" property="medicineProportion"/>
+        <result column="consumablesProportion" property="consumablesProportion"/>
+        <result column="checkFeeProportion" property="checkFeeProportion"/>
+        <result column="laboratoryFeeProportion" property="laboratoryFeeProportion"/>
+        <result column="operationNumberSum" property="operationNumberSum"/>
+        <result column="operationRedoRensRatio" property="operationRedoRensRatio"/>
+        <result column="disp0perationNumSum" property="disp0perationNumSum"/>
+        <result column="prescribeDispNumSum" property="prescribeDispNumSum"/>
+        <result column="dispProfessionNumSum" property="dispProfessionNumSum"/>
+        <result column="income_disp" property="incomeDisp"/>
+        <result column="income_physic_disp" property="incomePhysicDisp"/>
+        <result column="income_material_disp" property="incomeMaterialDisp"/>
+        <result column="income_treat_disp" property="incomeTreatDisp"/>
+        <result column="income_check_disp" property="incomeCheckDisp"/>
+        <result column="income_laboratory_disp" property="incomeLaboratoryDisp"/>
+        <result column="income_operation_disp" property="incomeOperationDisp"/>
+        <result column="income_other_disp" property="incomeOtherDisp"/>
+        <result column="income_bed_disp" property="incomeBedDisp"/>
+    </resultMap>
+    <select id="selectDispRegisterNumByTime" parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+    SELECT SUM(a.disp_register_num) AS registerCount,b.hospital_name FROM fact_hospital_kpi_d  AS a LEFT JOIN st_hospitcal_info b ON
+    a.org_code=b.hospital_id  WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+    GROUP BY b.hospital_name;
+    </select>
+
+    <select id="selectAvgFeeByPeople" parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+    SELECT round(SUM(a.income_disp)/SUM(a.disp_register_num), 2) AS regCount,b.hospital_name FROM fact_hospital_kpi_d  AS a LEFT JOIN st_hospitcal_info b ON
+    a.org_code=b.hospital_id  WHERE a.dim_date  BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY b.hospital_name;
+    </select>
+    <select id="selectMedicineProportion" parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+      SELECT b.hospital_name,round( SUM(a.income_physic_disp)/SUM(a.income_disp), 3) AS medicineProportion FROM fact_hospital_kpi_d a LEFT JOIN
+      st_hospitcal_info b ON a.org_code =b.hospital_id WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+      GROUP BY  b.hospital_name;
+    </select>
+    <select id="selectConsumablesProportion" parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+      SELECT b.hospital_name,round( SUM(a.income_material_disp)/SUM(a.income_disp), 3) as consumablesProportion FROM fact_hospital_kpi_d a LEFT JOIN
+      st_hospitcal_info b ON a.org_code =b.hospital_id WHERE a.dim_date  BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+      GROUP BY  b.hospital_name;
+    </select>
+    <select id="selectCheckFeeProportion"  parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+      SELECT b.hospital_name,round( SUM(a.income_check_disp)/SUM(a.income_disp), 3) AS checkFeeProportion FROM fact_hospital_kpi_d a LEFT JOIN
+      st_hospitcal_info b ON a.org_code =b.hospital_id WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE}  AND #{endDate,jdbcType=DATE}
+      GROUP BY  b.hospital_name
+</select>
+    <select id="selectLaboratoryFeeProportion" parameterType="java.util.Map"  resultMap="OutpatientAnalysisDTO">
+      SELECT b.hospital_name,round( SUM(a.income_laboratory_disp)/SUM(a.income_disp), 3) AS laboratoryFeeProportion FROM fact_hospital_kpi_d a LEFT JOIN
+      st_hospitcal_info b ON a.org_code =b.hospital_id WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE}  AND #{endDate,jdbcType=DATE}
+      GROUP BY  b.hospital_name
+    </select>
+
+    <select id="selectDisp0perationNumSum" parameterType="java.util.Map"  resultMap="OutpatientAnalysisDTO">
+    SELECT SUM(a.disp_operation_num) AS disp0perationNumSum ,b.hospital_name FROM fact_hospital_kpi_d  AS a LEFT JOIN st_hospitcal_info b ON
+    a.org_code=b.hospital_id  WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE}  AND #{endDate,jdbcType=DATE}
+    GROUP BY b.hospital_name;
+    </select>
+    <select id="selectPrescribeDispNumSum" parameterType="java.util.Map"  resultMap="OutpatientAnalysisDTO">
+      SELECT SUM(a.prescribe_disp_num) AS prescribeDispNumSum ,b.hospital_name  FROM fact_hospital_kpi_d  AS a LEFT JOIN st_hospitcal_info b ON
+      a.org_code=b.hospital_id  WHERE a.dim_date BETWEEN #{startDate,jdbcType=DATE}  AND #{endDate,jdbcType=DATE}
+      GROUP BY b.hospital_name;
+    </select>
+    <select id="selectDispProfessionNumSum" parameterType="java.util.Map"  resultMap="OutpatientAnalysisDTO">
+      SELECT SUM(a.disp_profession_num) AS dispProfessionNumSum ,b.hospital_name  FROM fact_hospital_kpi_d  AS a LEFT JOIN st_hospitcal_info b ON
+      a.org_code=b.hospital_id  WHERE a.dim_date  BETWEEN #{startDate,jdbcType=DATE}  AND #{endDate,jdbcType=DATE}
+      GROUP BY b.hospital_name;
+    </select>
+    <!-- 医师平均担负门急诊人次 -->
+    <select id="selectDocAvgOeManTimeByDate" parameterType="java.util.Map" resultMap="OutpatientAnalysisDTO">
+SELECT
+	round( b.oe_manTime / A.doctor_count, 2 ) AS doc_avg_oe_manTime,
+	A.hospital_name AS hospital_name
+FROM
+	(
+	SELECT
+		"sum" ( M.staff_doctor_rens ) AS doctor_count,
+		M.org_code AS org_code,
+		n.hospital_name AS hospital_name
+	FROM
+		dim_staff_dict
+		M LEFT JOIN st_hospitcal_info n ON M.org_code = n.hospital_id
+	GROUP BY
+		M.org_code,
+		n.hospital_name
+	)
+	A LEFT JOIN ( select round("sum"(disp_register_num),0) as oe_manTime, org_code as org_code from fact_hospital_kpi_d where dim_date BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE} GROUP BY org_code) b ON A.org_code = b.org_code ORDER  BY A.hospital_name ASC 
+    </select>
+    <select id="selectDispFeeProportion" parameterType="java.util.Map"  resultMap="OutpatientAnalysisDTO">
+       SELECT
+	 sum(income_disp) AS income_disp,
+	 sum (income_physic_disp) AS income_physic_disp,
+	 sum (income_material_disp) AS income_material_disp,
+	 sum (income_treat_disp) AS income_treat_disp,
+	 sum (income_check_disp) AS income_check_disp,
+	 sum (income_laboratory_disp) AS income_laboratory_disp,
+	 sum (income_operation_disp) AS income_operation_disp,
+	 sum (income_other_disp) AS income_other_disp,
+	 sum (income_bed_disp) AS income_bed_disp
+ FROM
+	fact_hospital_kpi_d
+ WHERE
+	dim_date
+  BETWEEN #{startDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+    </select>
+</mapper>

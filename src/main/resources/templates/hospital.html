@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">标题</title>
+    <link th:replace="common/header::link"/>
+    <link th:href="${urls.getForLookupPath('/css/index.css')}" rel="stylesheet" />
+</head>
+<body>
+<div class="col-xs-6"><div id="main0" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main1" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main1a" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main1b" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main1c" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main2" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main3" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main4" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main5" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main6" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main7" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main8" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main9" style="width: 500px;height:400px;"></div></div>
+
+<div class="col-xs-6"><div id="main11" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main12" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main13" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main14" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main15" style="width: 500px;height:400px;"></div></div>
+<div class="col-xs-6"><div id="main21" style="width: 500px;height:400px;"></div></div>
+<div class="row">
+    <div class="col-xs-6">
+        <div id="outBedNum" style="width: 600px;height:450px;"></div>
+    </div>
+    <div class="col-xs-6">
+        <div id="docLoadBedCount" style="width: 600px;height:450px;"></div>
+    </div>
+</div>
+<div id="table">
+    <table id="test-table" class="col-xs-12" data-toolbar="#test-table-toolbar"></table>
+</div>
+<script th:replace="common/js::script"></script>
+    <script th:src="${urls.getForLookupPath('/js/hospital.js')}"></script>
+<script th:inline="javascript">
+//    showEChartWithParam('main0',getOptionZero(),'/api/hospital/echartZero.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main1',getOptionOne(),'/api/hospital/echartOne.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main1a',getOptionOneA(),'/api/hospital/echartFive.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main1b',getOptionOneB(),'/api/hospital/echartSix.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main1c',getOptionOneC(),'/api/hospital/echartSeven.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main2',getOptionTwo(),'/api/hospital/echartTwo.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main3',getOptionThree(),'/api/hospital/echartThree.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main4',getOptionFour(),'/api/hospital/echartFour.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main5',getOptionFive(),'/api/hospitalCost/echartOne.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main6',getOptionSix(),'/api/hospitalCost/echartTwo.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main7',getOptionSeven(),'/api/hospitalCost/echartThree.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main8',getOptionEight(),'/api/hospitalCost/echartFour.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main9',getOptionNine(),'/api/hospitalCost/echartFive.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+
+    showEChartWithParam('main11',getOptionEleven(),'/api/totalCost/echartOne.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main12',getOptionTwelve(),'/api/totalCost/echartTwo.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main13',getOptionThirdteen(),'/api/totalCost/echartThree.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main14',getOptionFourteen(),'/api/totalCost/echartFour.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main15',getOptionFiveteen(),'/api/totalCost/echartFive.json',{'startDate':'2012-04-01','endDate':'2018-10-01'},callbackPie);
+//    showEChartWithParam('outBedNum',getOption('出院者占用床日数','数量','bar'),'/api/outBedNum/echart.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('docLoadBedCount',getOption('医师平均担负住院床日数','数量','bar'),'/api/docLoadBedCount/echart.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main0',getOptionZero(),'/api/hospital/echartZero.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main1',getOptionOne(),'/api/hospital/echartOne.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main1a',getOptionOneA(),'/api/hospital/echartFive.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main1b',getOptionOneB(),'/api/hospital/echartSix.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main1c',getOptionOneC(),'/api/hospital/echartSeven.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main2',getOptionTwo(),'/api/hospital/echartTwo.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main3',getOptionThree(),'/api/hospital/echartThree.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main4',getOptionFour(),'/api/hospital/echartFour.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main5',getOptionFive(),'/api/hospitalCost/echartOne.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main6',getOptionSix(),'/api/hospitalCost/echartTwo.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main7',getOptionSeven(),'/api/hospitalCost/echartThree.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main8',getOptionEight(),'/api/hospitalCost/echartFour.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+//    showEChartWithParam('main9',getOptionNine(),'/api/hospitalCost/echartFive.json',{'startDate':'2018-04-01','endDate':'2018-10-01'},callback);
+    showEChartWithParam('main21',getOption2("手术人次","手术人次"),'/api/selectOperationNumberSum.json',{'startDate': '2012-04-01','endDate':'2018-05-01'},callback);
+
+</script>
+</body>
+</html>
